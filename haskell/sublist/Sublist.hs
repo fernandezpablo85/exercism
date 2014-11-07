@@ -7,15 +7,16 @@ data Sublist = Sublist | Equal | Superlist | Unequal deriving (Show, Eq)
 sublist :: Eq a => [a] -> [a] -> Sublist
 sublist a b
   | a == b = Equal
-  | a == [] = Sublist
-  | b == [] = Superlist
   | contains a b = Sublist
   | contains b a = Superlist
   | otherwise = Unequal
 
 contains :: Eq a => [a] -> [a] -> Bool
-contains a b
-  | empty a = False
-  | empty b = False
-  | otherwise = if (a == take (length a) b) then True else contains a (tail b)
-    where empty xs = length xs == 0
+contains _ [] = False
+contains [] _ = True
+contains a b = a `isPrefixOf` b || contains a (tail b)
+
+isPrefixOf :: Eq a => [a] -> [a] -> Bool
+isPrefixOf [] _ = True
+isPrefixOf _ [] = False
+isPrefixOf (a:as) (b:bs) = a == b && as `isPrefixOf` bs
