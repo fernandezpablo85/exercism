@@ -3,9 +3,7 @@
 module DNA (hammingDistance) where
 
 hammingDistance :: String -> String -> Int
-hammingDistance [] [] = 0
-hammingDistance (x:xs) (y:ys) = if x /= y then
-                                  1 + hammingDistance xs ys
-                                else
-                                  hammingDistance xs ys
-hammingDistance _ _ = error "sequences must have equal length."
+hammingDistance first second = sum differences
+  where
+    differences = zipWith areDifferent first second
+    areDifferent a b = if a == b then 0 else 1
