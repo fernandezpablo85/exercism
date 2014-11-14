@@ -6,4 +6,4 @@ hammingDistance :: String -> String -> Int
 hammingDistance first second = sum differences
   where
     differences = zipWith areDifferent first second
-    areDifferent a b = if a == b then 0 else 1
+    areDifferent a b = if a /= b then 1 else 0
