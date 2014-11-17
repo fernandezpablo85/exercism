@@ -9,6 +9,8 @@ anagramsFor orig = foldr append []
   where append w matches = if isAnagram orig w then w : matches else matches
 
 isAnagram :: String -> String -> Bool
-isAnagram a b = lower a /= lower b && norm a == norm b
-  where norm = sort . lower
+isAnagram a b = notSame && anagram
+  where notSame = lower a /= lower b
+        anagram = norm a == norm b
+        norm = sort . lower
         lower = map toLower
