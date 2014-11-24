@@ -3,7 +3,7 @@ class Anagram(text: String) {
   val cannonicalText = cannonical(text)
 
   def cannonical(string: String): String =
-    string.toLowerCase.sortWith(_ > _)
+    string.toLowerCase.sorted
 
   def matches(candidates: Seq[String]): Seq[String] = {
     def isAnagram(candidate: String) =
