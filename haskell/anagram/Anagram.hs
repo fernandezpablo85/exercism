@@ -9,7 +9,9 @@ anagramsFor orig = filter (isAnagram orig)
 
 isAnagram :: String -> String -> Bool
 isAnagram a b = notSame && anagram
-  where notSame = lower a /= lower b
-        anagram = norm a == norm b
-        norm = sort . lower
+  where norm = sort . lower
         lower = map toLower
+        normA = norm a
+        notSame = lower a /= lower b
+        anagram = normA == norm b
+
