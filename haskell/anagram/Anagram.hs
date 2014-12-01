@@ -5,13 +5,16 @@ import Data.List(sort)
 import Data.Char(toLower)
 
 anagramsFor :: String -> [String] -> [String]
-anagramsFor orig = filter (isAnagram orig)
+anagramsFor orig = filter (isAnagram orig (norm orig))
 
-isAnagram :: String -> String -> Bool
-isAnagram a b = notSame && anagram
-  where norm = sort . lower
-        lower = map toLower
-        normA = norm a
-        notSame = lower a /= lower b
-        anagram = normA == norm b
+isAnagram :: String -> String -> String -> Bool
+isAnagram orig a b = notSame && anagram
+  where notSame = lower orig /= lower b
+        anagram = a == norm b
+
+norm :: String -> String
+norm = sort . lower
+
+lower :: String -> String
+lower = map toLower
 
