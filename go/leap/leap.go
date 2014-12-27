@@ -1,14 +1,18 @@
 package leap
 
-import (
-	"math"
-)
-
 func IsLeapYear(year int) bool {
-	return IsDivisibleBy(year, 4) &&
-		(!IsDivisibleBy(year, 100) || IsDivisibleBy(year, 400))
+	switch {
+	case IsDivisibleBy(year, 400):
+		return true
+	case IsDivisibleBy(year, 100):
+		return false
+	case IsDivisibleBy(year, 4):
+		return true
+	default:
+		return false
+	}
 }
 
 func IsDivisibleBy(year int, div int) bool {
-	return math.Mod(float64(year), float64(div)) == 0
+	return (year % div) == 0
 }
