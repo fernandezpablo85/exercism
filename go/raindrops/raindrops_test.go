@@ -40,3 +40,11 @@ func BenchmarkConvert(b *testing.B) {
 		}
 	}
 }
+
+func BenchmarkConvertInlined(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range tests {
+			ConvertInlined(test.input)
+		}
+	}
+}
