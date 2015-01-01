@@ -1,12 +1,12 @@
 package triangle
 
-type Kind interface{}
+type Kind int
 
 const (
-	Equ = "Equ"
-	Iso = "Iso"
-	Sca = "Sca"
-	NaT = "Nat"
+	Equ Kind = iota
+	Iso
+	Sca
+	NaT
 )
 
 func KindFromSides(a float64, b float64, c float64) Kind {
