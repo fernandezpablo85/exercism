@@ -1,13 +1,18 @@
 class PhoneNumber(input: String) {
-  val onlyNumbers = input.filter(_.isDigit)
-  val clean = if (onlyNumbers.startsWith("11")) onlyNumbers.substring(1) else onlyNumbers
-  val isValid = clean.size >= 10 && clean.size < 11
-  val number = if (isValid) clean else PhoneNumber.Invalid
-  val areaCode = clean.substring(0,3)
 
-  override def toString = {
-    val first = clean.substring(3,6)
-    val second = clean.substring(6,10)
+  val digits = input.filter(_.isDigit)
+
+  val number = digits.size match {
+    case 11 if digits.head == '1' => digits.tail
+    case 10 => digits
+    case _ => PhoneNumber.Invalid
+  }
+
+  val areaCode = number.substring(0,3)
+
+  override val toString = {
+    val first = number.substring(3,6)
+    val second = number.substring(6,10)
     s"($areaCode) $first-$second"
   }
 }
