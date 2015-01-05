@@ -18,10 +18,9 @@ class School {
 
   def grade(grade: Grade): List[Name] = db.getOrElse(grade, emptyNames)
 
-  def sorted: Db = db.foldLeft(empty)(sortNames)
+  def sorted: Db = db.keys.foldLeft(empty)(sortNames)
 
-  def sortNames(map: Db, entry: (Grade, List[Name])): Db = {
-    val (k, names) = entry
-    map + (k -> names.sorted)
+  def sortNames(map: Db, grade: Grade): Db = {
+    map + (grade -> db(grade).sorted)
   }
 }
