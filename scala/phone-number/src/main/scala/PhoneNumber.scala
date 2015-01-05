@@ -5,18 +5,11 @@ class PhoneNumber(input: String) {
   val number = digits.size match {
     case 11 if digits.head == '1' => digits.tail
     case 10 => digits
-    case _ => PhoneNumber.Invalid
+    case _ => "0" * 10
   }
 
-  val areaCode = number.substring(0,3)
+  val (areaCode, first, second) =
+    (number.substring(0,3), number.substring(3,6), number.substring(6,10))
 
-  override val toString = {
-    val first = number.substring(3,6)
-    val second = number.substring(6,10)
-    s"($areaCode) $first-$second"
-  }
-}
-
-object PhoneNumber {
-  val Invalid = "0000000000"
+  override val toString = s"($areaCode) $first-$second"
 }
