@@ -15,3 +15,8 @@ ruby/
 swift/
 target/
 lisp/
+java/
+php/
+plsql/
+rust/
+scheme/
