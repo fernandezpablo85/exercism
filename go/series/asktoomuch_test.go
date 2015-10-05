@@ -18,6 +18,11 @@ func TestAskTooMuch(t *testing.T) {
 				t.Fatalf("Yikes, Frist(%d, %s) = %q, want %q.",
 					test.n, test.s, res, test.out[0])
 			}
+		case test.out == nil:
+			if len(res) > 0 {
+				t.Fatalf("Yikes, Frist(%d, %s) = %q, want empty string.",
+					test.n, test.s, res)
+			}
 		case len(res) != test.n:
 			t.Fatalf("Yikes, Frist(%d, %s) = %q, but %q doesn't have %d characters.",
 				test.n, test.s, res, res, test.n)

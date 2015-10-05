@@ -1,7 +1,16 @@
 package slice
 
 func Frist(length int, value string) string {
-	return value[:length]
+	first, _ := First(length, value)
+	return first
+}
+
+func First(length int, value string) (string, bool) {
+	if len(value) < length {
+		return "", false
+	} else {
+		return value[:length], true
+	}
 }
 
 func All(length int, value string) []string {
