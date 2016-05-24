@@ -8,9 +8,8 @@ func Frist(length int, value string) string {
 func First(length int, value string) (string, bool) {
 	if len(value) < length {
 		return "", false
-	} else {
-		return value[:length], true
 	}
+	return value[:length], true
 }
 
 func All(length int, value string) []string {
@@ -20,10 +19,9 @@ func All(length int, value string) []string {
 func allImpl(length int, value string, all []string) []string {
 	if length > len(value) {
 		return all
-	} else {
-		first := Frist(length, value)
-		rest := value[1:]
-		updated := append(all, first)
-		return allImpl(length, rest, updated)
 	}
+	first := Frist(length, value)
+	rest := value[1:]
+	updated := append(all, first)
+	return allImpl(length, rest, updated)
 }
